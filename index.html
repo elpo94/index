@@ -13,85 +13,76 @@
       background-color: #f0faff;
       display: flex;
       justify-content: center;
-      padding: 20px;
+      padding: 30px 10px;
       margin: 0;
       color: #333;
     }
 
     .container {
       background-color: white;
-      padding: 40px;
+      padding: 40px 30px;
       border-radius: 25px;
-      box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
+      box-shadow: 0 10px 40px rgba(0, 100, 255, 0.1);
       width: 100%;
-      max-width: 500px;
+      max-width: 480px;
     }
 
-    h2 { color: #007bff; text-align: center; margin-bottom: 30px; font-size: 1.6em; }
+    h2 { color: #007bff; text-align: center; margin-bottom: 30px; }
 
-    .input-group { margin-bottom: 20px; }
-    label { display: block; margin-bottom: 8px; color: #444; font-size: 0.95em; }
+    .input-group { margin-bottom: 18px; }
+    label { display: block; margin-bottom: 8px; color: #555; font-size: 0.9em; }
 
     input, select, textarea {
       width: 100%;
       padding: 14px;
-      border: 2px solid #e1e9ff;
+      border: 2px solid #eef2ff;
       border-radius: 12px;
       box-sizing: border-box;
       font-family: inherit;
-      font-size: 1em;
       outline: none;
-      transition: all 0.3s;
+      transition: 0.3s;
     }
 
     input:focus, textarea:focus { border-color: #007bff; background-color: #fcfdff; }
-
-    textarea { height: 120px; resize: none; }
+    textarea { height: 130px; resize: none; }
 
     button {
       background-color: #007bff;
       color: white;
       border: none;
-      padding: 16px;
+      padding: 18px;
       border-radius: 12px;
       cursor: pointer;
       font-family: 'Cafe24Ssurround';
       font-size: 1.2em;
       width: 100%;
-      margin-top: 10px;
+      margin-top: 15px;
       transition: 0.3s;
     }
 
     button:hover { background-color: #0056b3; transform: translateY(-2px); }
-    button:disabled { background-color: #bddbff; cursor: not-allowed; }
+    button:disabled { background-color: #ccc; cursor: not-allowed; }
 
-    #loading { display: none; text-align: center; margin-top: 25px; color: #007bff; font-size: 0.9em; }
+    #loading { display: none; text-align: center; margin-top: 25px; color: #007bff; }
     
     #resultBox {
       display: none;
       margin-top: 30px;
       padding: 25px;
       background-color: #f5faff;
-      border: 2px solid #e1efff;
+      border-left: 6px solid #007bff;
       border-radius: 15px;
       line-height: 1.8;
-      white-space: pre-wrap; /* 줄바꿈 유지 */
+      white-space: pre-wrap;
     }
 
-    .feedback-title {
-      display: block;
-      color: #0056b3;
-      font-weight: bold;
-      margin-bottom: 10px;
-      border-bottom: 1px dashed #007bff;
-      padding-bottom: 5px;
-    }
+    .feedback-title { font-weight: bold; color: #0056b3; display: block; margin-bottom: 10px; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>오늘의 마음 기록 💙</h2>
+  <h2>오늘의 마음 상담소 💙</h2>
   
   <div class="input-group">
     <label>성함</label>
@@ -113,34 +104,34 @@
   </div>
 
   <div class="input-group">
-    <label>오늘의 감정 키워드</label>
-    <input type="text" id="emotion" placeholder="예: 행복함, 서운함, 뿌듯함 등">
+    <label>오늘의 감정</label>
+    <input type="text" id="emotion" placeholder="예: 무기력함, 기쁨, 속상함">
   </div>
 
   <div class="input-group">
-    <label>무슨 일이 있었나요? (자세히 적을수록 좋아요!)</label>
-    <textarea id="reason" placeholder="선생님에게 말하듯 편하게 적어주세요."></textarea>
+    <label>무슨 일이 있었나요? (자세히 적어주세요)</label>
+    <textarea id="reason" placeholder="상담 선생님께 이야기하듯 솔직하게 적어보세요."></textarea>
   </div>
 
-  <button id="submitBtn" onclick="submitData()">AI 마음 처방전 받기</button>
+  <button id="submitBtn" onclick="submitToAI()">AI 마음 처방전 받기</button>
 
-  <div id="loading">AI 상담 선생님이 마음을 분석하고 있어요. 잠시만 기다려 주세요... ⏳</div>
+  <div id="loading">AI 상담 선생님이 분석 중입니다... 잠시만요! ⏳</div>
   
   <div id="resultBox">
-    <span class="feedback-title">📋 맞춤 마음 처방전</span>
+    <span class="feedback-title">📋 나를 위한 마음 처방전</span>
     <div id="feedbackText"></div>
   </div>
 </div>
 
 <script>
-  function submitData() {
+  function submitToAI() {
     const name = document.getElementById('name').value;
     const mbti = document.getElementById('mbti').value;
     const emotion = document.getElementById('emotion').value;
     const reason = document.getElementById('reason').value;
 
     if(!name || !emotion || !reason) {
-      alert("모든 칸을 채워주시면 더 정확한 상담이 가능해요!");
+      alert("모든 항목을 입력해 주셔야 정확한 상담이 가능해요!");
       return;
     }
 
